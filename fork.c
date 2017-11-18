@@ -15,24 +15,15 @@ int child() {
 }
 
 int main() {
-
   int status;
-
   printf("=======pre-fork=======\n");
   int f = fork();
   int f2;
-
   if (f) {f2 = fork();}
   else {f2 = 1;}
-
-
-  if (!f || !f2) {
-    child();
-  }
-
+  if (!f || !f2) {child();}
   int child_pid = wait(&status);
   printf("The finished child:\npid: %d\t time asleep: %d\n", child_pid, WEXITSTATUS(status));
   printf("I, the parent, am done\n");
-
   return 0;
 }
